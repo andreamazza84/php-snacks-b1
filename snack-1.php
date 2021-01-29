@@ -21,8 +21,35 @@ $matches = [
     'Settembre' => ['casa' => 'Allianz Pallacanestro Trieste', 'ospite' => 'Virtus Roma', 'punti' => [55, 60]],
 ];
 
-foreach ($matches as $key => $value) {
-    echo $value['casa'] . " - " . $value['ospite'] . " | " . $value['punti'][0] . " - " . $value['punti'][1] . "<br>";
-}
-
 ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snack-01</title>
+    <style>
+        .body{
+            background-color: #f7f7f7;
+        }
+        .container{
+            margin: auto;
+            width: 80%;
+            text-align: center;
+        }
+        p{
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Rislutati stagione 2020</h1>
+        <p>
+            <?php foreach ($matches as $key => $value) {echo  $value['casa'] . " - " . $value['ospite'] . " | " . $value['punti'][0] . " - " . $value['punti'][1] . "<br>";} ?>
+        </p>
+    </div>
+
+</body>
+</html>
