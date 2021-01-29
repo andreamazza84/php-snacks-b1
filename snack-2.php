@@ -10,27 +10,26 @@
 -->
 
 <?php 
-    //&& str_contains($email, "@")
     $name = trim($_GET['name'], " ");
     $email = trim($_GET['email'], " ");
-    $age = trim($_GET['age'], " ");
-    $success = false;
+    $age = intval(trim($_GET['age']));
 
-    var_dump(str_contains('abc', ''));
-    
-    if (strlen($name) < 4) {
-        return $success = false;
+    if (strlen($name) === 0 && strlen($email) === 0 && $age === 0) {
+        $success = null;
     }
-    // elseif (str_contains($email, ".") == false) {
-    //     $success = false;
-    //}
+    elseif (strlen($name) < 4 && strlen($name) > 0) {
+        $success = false;
+    }
+    elseif (strpos($email, ".") == false || strpos($email, "@") === false) {
+        $success = false;
+    }
+    elseif (gettype($age) !== integer) {
+        $success = false;
+    }
     else{
-        return $success = true;
+        $success = true;
     }
     
-    var_dump($success);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -69,15 +68,16 @@
 <body>
     <div class="container">
         <h1>Inserisci qui i tuoi dati</h1>
-        <form action="">
+        <form action ="" method="get" name="myform">
             <label for="name">Nome</label>
             <input type="text" name="name" id="name">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+            <input type="text" name="email" id="email">
             <label for="age">Age</label>
-            <input type="number" name="age" id="age"><br>
+            <input type="text" name="age" id="age"><br>
             <input type="submit" value="Submit">
         </form>
+        <h4><?php if($success){echo 'Dati inseriti correttamente';} elseif($success === false){echo 'Errore: dati non inseriti correttamente';} elseif($success === null) {echo '';}?></h4>
     </div>
 </body>
 </html>
